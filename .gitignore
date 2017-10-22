@@ -1,0 +1,9 @@
+.settings/
+bin/
+target/
+dist/
+
+# Editor directories and files
+.classpath
+.project
+*.class
