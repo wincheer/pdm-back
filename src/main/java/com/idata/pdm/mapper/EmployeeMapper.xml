@@ -47,14 +47,14 @@
     where employee_id = #{employeeId,jdbcType=INTEGER}
   </update>
   
-  <select id="login" parameterType="com.idata.pdm.entity.Employee">
+  <select id="login" parameterType="com.idata.pdm.entity.Employee" resultMap="BaseResultMap">
   	select * from employee
   	where is_delete = 0
   	<trim prefix=" and (" suffix=")" suffixOverrides="and">
-      <if test="employeeId != null">employee_id and</if>
-      <if test="displayName != null">display_name and</if>
-      <if test="loginName != null">login_name and</if>
-      <if test="loginPassword != null">login_password and</if>
+      <if test="employeeId != null">employee_id = #{employeeId,jdbcType=INTEGER} and</if>
+      <if test="displayName != null">display_name = #{displayName,jdbcType=VARCHAR} and</if>
+      <if test="loginName != null">login_name = #{loginName,jdbcType=VARCHAR} and</if>
+      <if test="loginPassword != null">login_password = #{loginPassword,jdbcType=VARCHAR} and</if>
     </trim>
   </select>
 </mapper>

@@ -18,12 +18,6 @@ public class HelloService
 	@Autowired
 	private EmployeeMapper dao;
 
-//	public Role selectRoleByPk(int roleId)
-//	{
-//		logger.info("RoleID = " + roleId);
-//		return dao.selectByPrimaryKey(roleId);
-//	}
-
 	public Employee login(Employee employee)
 	{
 		return dao.login(employee);
