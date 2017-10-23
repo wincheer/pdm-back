@@ -11,9 +11,9 @@ import com.idata.pdm.entity.Employee;
 
 @Service
 @Transactional
-public class HelloService
+public class EmployeeService
 {
-	private final static Logger logger = LoggerFactory.getLogger(HelloService.class);
+	private final static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 	
 	@Autowired
 	private EmployeeMapper dao;

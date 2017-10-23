@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idata.pdm.entity.Employee;
-import com.idata.pdm.service.HelloService;
+import com.idata.pdm.service.EmployeeService;
 
 @RestController
 @CrossOrigin
-public class HelloAction {
+public class EmployeeAction {
 	@Autowired
-	private HelloService helloService;
+	private EmployeeService helloService;
 
 	//	@RequestMapping("/hello")
 	//	public ResponseEntity<Role> hello()
