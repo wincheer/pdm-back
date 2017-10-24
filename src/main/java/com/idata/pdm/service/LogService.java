@@ -28,16 +28,14 @@ public class LogService
 		int pageNo = (Integer) queryParam.get("pageNo");
 		int pageSize = (Integer) queryParam.get("pageSize");
 		@SuppressWarnings("unchecked")
-		Map<String,Object> params =  (Map<String, Object>) queryParam.get("queryLog");
-		Utils.cleanMap(params);
-		
+		Map<String,Object> params =  (Map<String, Object>) queryParam.get("filter");
 		logger.info(params.toString());
 		
 		int start = (pageNo - 1) * pageSize;
 		params.put("start", start);
 		params.put("pageSize", pageSize);
 				
-		return dao.selectLogPageList(params);
+		return dao.selectLogPageList(Utils.cleanMap(params));
 	}
 
 
@@ -46,9 +44,8 @@ public class LogService
 		int total = 0;
 		
 		@SuppressWarnings("unchecked")
-		Map<String,Object> params =  (Map<String, Object>) queryParam.get("queryLog");
-		Utils.cleanMap(params);
-		total = dao.totalLogs(params);
+		Map<String,Object> params =  (Map<String, Object>) queryParam.get("filter");
+		total = dao.totalLogs(Utils.cleanMap(params));
 		
 		return total;
 	}

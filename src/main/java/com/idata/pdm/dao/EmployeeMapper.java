@@ -1,16 +1,23 @@
 package com.idata.pdm.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.idata.pdm.entity.Employee;
 
 public interface EmployeeMapper {
 
-	Employee selectByPrimaryKey(Integer employeeId);
-	
-	int deleteByPrimaryKey(Integer employeeId);
+	Employee selectEmployee(Integer employeeId);
 
-    int insertSelective(Employee employee);
+	int deleteEmployee(Integer employeeId);
 
-    int updateByPrimaryKeySelective(Employee employee);
-    
-    Employee login(Employee employee);
+	int insertEmployee(Employee employee);
+
+	int updateEmployee(Employee employee);
+
+	Employee login(Employee employee);
+
+	int totalEmployees(Map<String, Object> params);
+
+	List<Employee> selectEmployeePageList(Map<String, Object> params);
 }
