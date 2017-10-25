@@ -60,4 +60,12 @@ public class EmployeeService {
 		return dao.updateEmployee(employee);
 	}
 
+	public int updateEmployee(Employee employee) {
+		return dao.updateEmployee(employee);
+	}
+
+	public int insertEmployee(Employee employee) {
+		return dao.insertEmployee(employee);
+	}
+
 }

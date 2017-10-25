@@ -5,6 +5,7 @@ public class Employee {
     private String displayName;
     private String loginName;
     private String loginPassword;
+    private Integer role;
     private Integer isDelete;
 
     public Integer getEmployeeId() {
@@ -35,6 +36,13 @@ public class Employee {
         this.loginPassword = loginPassword;
     }
     
+	public Integer getRole() {
+		return role;
+	}
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+	
 	public Integer getIsDelete()
 	{
 		return isDelete;

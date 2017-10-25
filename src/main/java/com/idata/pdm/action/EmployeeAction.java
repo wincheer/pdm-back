@@ -49,4 +49,19 @@ public class EmployeeAction {
 		return employeeService.deleteEmployee(employeeId);
 	}
 
+	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
+	public int editEmployee(@RequestBody Employee employee) {
+
+		int employeeId = 0;
+		if (employee.getEmployeeId() != null && employee.getEmployeeId() > 0) {
+			//update
+			employeeId = employeeService.updateEmployee(employee);
+		} else {
+			//insert
+			employeeId = employeeService.insertEmployee(employee);
+		}
+
+		return employeeId;
+	}
+
 }
