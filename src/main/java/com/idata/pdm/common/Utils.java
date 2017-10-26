@@ -1,5 +1,8 @@
 package com.idata.pdm.common;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,26 +14,73 @@ import org.apache.log4j.Logger;
  * <b>版本历史 :</b> <br/>
  * 杨文清 | 2017年10月23日 下午7:29:37 | 创建
  */
-public class Utils
-{
+public class Utils {
 	private static Logger log = Logger.getLogger(Utils.class);
 
 	/**
 	 * 将map中value等于空的key去掉
+	 * 
 	 * @param map
 	 */
-	public static Map<String, Object> cleanMap(Map<String, Object> map)
-	{
+	public static Map<String, Object> cleanMap(Map<String, Object> map) {
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
-		for (String key : map.keySet())
-		{
+		for (String key : map.keySet()) {
 			log.info(key + " = " + map.get(key));
-			if (map.get(key) != null && map.get(key).toString() != "")
-			{
+			if (map.get(key) != null && map.get(key).toString() != "") {
 				resultMap.put(key, map.get(key));
 			}
 		}
 		return resultMap;
+	}
+
+	/**
+	 * Map转换为对象(Object)
+	 * 
+	 * @param map
+	 * @param beanClass
+	 * @return
+	 * @throws Exception
+	 */
+	public static Object mapToObject(Map<String, Object> map, Class<?> beanClass) throws Exception {
+		if (map == null)
+			return null;
+
+		Object obj = beanClass.newInstance();
+
+		Field[] fields = obj.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			int mod = field.getModifiers();
+			if (Modifier.isStatic(mod) || Modifier.isFinal(mod)) {
+				continue;
+			}
+			field.setAccessible(true);
+			field.set(obj, map.get(field.getName()));
+		}
+
+		return obj;
+	}
+
+	/**
+	 * 对象(Object)转换为Map
+	 * 
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	public static Map<String, Object> objectToMap(Object obj) throws Exception {
+		if (obj == null) {
+			return null;
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Field[] declaredFields = obj.getClass().getDeclaredFields();
+		for (Field field : declaredFields) {
+			field.setAccessible(true);
+			map.put(field.getName(), field.get(obj));
+		}
+
+		return map;
 	}
 
 }
