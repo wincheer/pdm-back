@@ -7,7 +7,6 @@
 		<result column="parent_folder_id" jdbcType="INTEGER" property="parentFolderId" />
 		<result column="project_id" jdbcType="INTEGER" property="projectId" />
 		<result column="folder_name" jdbcType="VARCHAR" property="folderName" />
-		<result column="folder_desc" jdbcType="VARCHAR" property="folderDesc" />
 	</resultMap>
 
 	<select id="selectFolder" parameterType="java.lang.Integer"
@@ -21,19 +20,17 @@
 		where folder_id = #{folderId,jdbcType=INTEGER}
 	</delete>
 
-	<insert id="insertFolder" parameterType="com.idata.pdm.entity.Folder">
+	<insert id="insertFolder" useGeneratedKeys="true" keyProperty="folderId" parameterType="com.idata.pdm.entity.Folder">
 		insert into folder
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="parentFolderId != null">parent_folder_id,</if>
 			<if test="projectId != null">project_id,</if>
 			<if test="folderName != null">folder_name,</if>
-			<if test="folderDesc != null">folder_desc,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="parentFolderId != null">#{parentFolderId,jdbcType=INTEGER},</if>
 			<if test="projectId != null">#{projectId,jdbcType=INTEGER},</if>
 			<if test="folderName != null">#{folderName,jdbcType=VARCHAR},</if>
-			<if test="folderDesc != null">#{folderDesc,jdbcType=VARCHAR},</if>
 		</trim>
 	</insert>
 	
@@ -43,7 +40,6 @@
 			<if test="parentFolderId != null">parent_folder_id = #{parentFolderId,jdbcType=INTEGER},</if>
 			<if test="projectId != null">project_id = #{projectId,jdbcType=INTEGER},</if>
 			<if test="folderName != null">folder_name = #{folderName,jdbcType=VARCHAR},</if>
-			<if test="folderDesc != null">folder_desc = #{folderDesc,jdbcType=VARCHAR},</if>
 		</set>
 		where folder_id = #{folderId,jdbcType=INTEGER}
 	</update>

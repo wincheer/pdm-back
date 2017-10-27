@@ -10,8 +10,6 @@ public class Folder {
 
 	private String folderName;
 
-	private String folderDesc;
-
 	public Integer getFolderId() {
 		return folderId;
 	}
@@ -44,11 +42,4 @@ public class Folder {
 		this.folderName = folderName;
 	}
 
-	public String getFolderDesc() {
-		return folderDesc;
-	}
-
-	public void setFolderDesc(String folderDesc) {
-		this.folderDesc = folderDesc;
-	}
 }

@@ -11,7 +11,7 @@
     <result column="document_id" jdbcType="INTEGER" property="documentId" />
     <result column="upload_date" jdbcType="TIMESTAMP" property="uploadDate" />
     <result column="upload_employee" jdbcType="VARCHAR" property="uploadEmployee" />
-    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="version" jdbcType="INTEGER" property="version" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -90,7 +90,7 @@
         #{uploadEmployee,jdbcType=VARCHAR},
       </if>
       <if test="version != null">
-        #{version,jdbcType=VARCHAR},
+        #{version,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

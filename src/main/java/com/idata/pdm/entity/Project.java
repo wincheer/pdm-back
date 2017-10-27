@@ -1,12 +1,18 @@
 package com.idata.pdm.entity;
 
+import java.sql.Date;
+
 public class Project {
 
 	private Integer projectId;
+	
+	private Integer templateId;
 
 	private String projectName;
 
 	private String projectDesc;
+	
+	private Date createDate;
 
 	public Integer getProjectId() {
 		return projectId;
@@ -14,6 +20,14 @@ public class Project {
 
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
+	}
+
+	public Integer getTemplateId() {
+		return templateId;
+	}
+
+	public void setTemplateId(Integer templateId) {
+		this.templateId = templateId;
 	}
 
 	public String getProjectName() {
@@ -31,4 +45,13 @@ public class Project {
 	public void setProjectDesc(String projectDesc) {
 		this.projectDesc = projectDesc;
 	}
+
+	public Date getcreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
 }
