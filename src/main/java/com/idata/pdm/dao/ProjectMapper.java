@@ -1,5 +1,8 @@
 package com.idata.pdm.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.idata.pdm.entity.Project;
 
 public interface ProjectMapper {
@@ -11,4 +14,6 @@ public interface ProjectMapper {
     Project selectProject(Integer projectId);
 
     int updateProject(Project record);
+
+	List<Project> selectProjectPageList(Map<String,Object> project);
 }

@@ -1,7 +1,10 @@
 package com.idata.pdm.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +21,7 @@ import com.idata.pdm.entity.TemplateFolder;
 @Service
 @Transactional
 public class ProjectService {
-	//private final static Logger logger = LoggerFactory.getLogger(ProjectService.class);
+	private final static Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
 	@Autowired
 	private ProjectMapper projectDao;
@@ -59,6 +62,21 @@ public class ProjectService {
 				buildChildren(_node,projectId);
 			}
 		}
+	}
+
+	public List<Project> selectProjectPageList(Map<String,Object> queryParam)
+	{
+		int pageNo = (Integer) queryParam.get("pageNo");
+		int pageSize = (Integer) queryParam.get("pageSize");
+		int start = (pageNo - 1) * pageSize;
+
+		@SuppressWarnings("unchecked")
+		Map<String, Object> params = (Map<String, Object>) queryParam.get("filter");
+		logger.info(params.toString());
+		params.put("start", start);
+		params.put("pageSize", pageSize);
+		
+		return projectDao.selectProjectPageList(Utils.cleanMap(params));
 	}
 
 }

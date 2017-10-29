@@ -47,4 +47,14 @@
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
   
+  <select id="selectProjectPageList" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select * from project
+  	where 1 = 1
+  	<trim prefix=" and (" suffix=")" suffixOverrides="and">
+      <if test="projectName != null">project_name = #{projectName,jdbcType=VARCHAR} and</if>
+      <if test="projectDesc != null">project_desc = #{projectDesc,jdbcType=VARCHAR} and</if>
+      <if test="template_id != null">template_id = #{templateId,jdbcType=INTEGER} and</if>
+    </trim>
+    limit #{start},#{pageSize}
+  </select>
 </mapper>

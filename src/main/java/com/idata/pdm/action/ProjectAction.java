@@ -1,5 +1,8 @@
 package com.idata.pdm.action;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,5 +25,12 @@ public class ProjectAction
 
 		int projectId = projectService.insertProject(project);
 		return projectId;
+	}
+	
+	@RequestMapping(value = "/projectPageList", method = RequestMethod.POST)
+	public List<Project> selectProjectPageList(@RequestBody Map<String,Object> project){
+		
+		List<Project> projectrList = projectService.selectProjectPageList(project);
+		return projectrList;
 	}
 }
