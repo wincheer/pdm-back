@@ -1,5 +1,7 @@
 package com.idata.pdm.dao;
 
+import java.util.List;
+
 import com.idata.pdm.entity.Folder;
 
 public interface FolderMapper {
@@ -11,5 +13,7 @@ public interface FolderMapper {
 	Folder selectFolder(Integer folderId);
 
 	int updateFolder(Folder record);
+
+	List<Folder> selectFolderList(int projectId);
 
 }

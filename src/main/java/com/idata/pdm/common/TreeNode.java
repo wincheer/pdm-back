@@ -6,7 +6,7 @@ import java.util.List;
 public class TreeNode {
 
 	private Integer id;
-	private Integer templateId;
+	private Integer ownerId; //比如模板ID或者项目ID
 	private String label;
 	private Integer parentId;
 	private List<TreeNode> children = new ArrayList<TreeNode>();
@@ -14,23 +14,23 @@ public class TreeNode {
 	public TreeNode() {
 	}
 
-	public TreeNode(Integer id, String label, Integer parentId,Integer templateId) {
+	public TreeNode(Integer id, String label, Integer parentId,Integer ownerId) {
 		this.id = id;
 		this.label = label;
 		this.parentId = parentId;
-		this.templateId = templateId;
+		this.ownerId = ownerId;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public Integer getTemplateId() {
-		return templateId;
+	public Integer getOwnerId() {
+		return ownerId;
 	}
 
-	public void setTemplateId(Integer templateId) {
-		this.templateId = templateId;
+	public void setOwnerId(Integer ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public void setId(Integer id) {

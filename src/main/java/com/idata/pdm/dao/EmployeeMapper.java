@@ -20,4 +20,6 @@ public interface EmployeeMapper {
 	int totalEmployees(Map<String, Object> params);
 
 	List<Employee> selectEmployeePageList(Map<String, Object> params);
+
+	List<Employee> selectEmployeeList();
 }

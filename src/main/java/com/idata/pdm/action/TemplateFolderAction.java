@@ -1,5 +1,6 @@
 package com.idata.pdm.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,15 @@ public class TemplateFolderAction {
 	public List<TreeNode> selectTemplateFolderList(@RequestParam int templateId) throws Exception {
 
 		List<TemplateFolder> templateFolderList = templateFolderService.selectTemplateFolderList(templateId);
-		List<TreeNode> folderTree = Utils.builderTree(templateFolderList);
+		
+		List<TreeNode> folderList = new ArrayList<TreeNode>();
+		for (TemplateFolder tf : templateFolderList) {
+			TreeNode treeNode = new TreeNode(tf.getTemplateFolderId(), tf.getTemplateFolderName(),
+					tf.getParentTemplateFolderId(), tf.getTemplateId());
+			folderList.add(treeNode);
+		}
+		
+		List<TreeNode> folderTree = Utils.builderTree(folderList);
 
 		return folderTree;
 	}

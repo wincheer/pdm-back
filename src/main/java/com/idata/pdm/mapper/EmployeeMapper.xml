@@ -82,4 +82,9 @@
     limit #{start},#{pageSize}
   </select>
   
+  <select id="selectEmployeeList" resultMap="BaseResultMap">
+  	select * from employee
+  	where is_delete = 0
+  </select>
+  
 </mapper>

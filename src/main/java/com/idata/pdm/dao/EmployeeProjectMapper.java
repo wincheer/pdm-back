@@ -1,5 +1,7 @@
 package com.idata.pdm.dao;
 
+import java.util.List;
+
 import com.idata.pdm.entity.EmployeeProject;
 
 public interface EmployeeProjectMapper {
@@ -11,5 +13,7 @@ public interface EmployeeProjectMapper {
     EmployeeProject selectEmployeeProject(Integer employeeProjectId);
 
     int updateEmployeeProject(EmployeeProject record);
+
+	List<EmployeeProject> selectProjectEmployeeList(int projectId);
 
 }

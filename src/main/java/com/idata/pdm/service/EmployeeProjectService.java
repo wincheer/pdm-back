@@ -1,21 +1,37 @@
 package com.idata.pdm.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.idata.pdm.dao.EmployeeProjectMapper;
+import com.idata.pdm.entity.EmployeeProject;
 
 @Service
 @Transactional
 public class EmployeeProjectService
 {
-	private final static Logger logger = LoggerFactory.getLogger(EmployeeProjectService.class);
+	//private final static Logger logger = LoggerFactory.getLogger(EmployeeProjectService.class);
 	
 	@Autowired
 	private EmployeeProjectMapper dao;
 
+	public List<EmployeeProject> selectProjectEmployeeList(int projectId) {
+		return dao.selectProjectEmployeeList(projectId);
+	}
+
+	public int updateEmployeeProject(EmployeeProject projectEmployee) {
+		return dao.updateEmployeeProject(projectEmployee);
+	}
+
+	public int insertEmployeeProject(EmployeeProject projectEmployee) {
+		return dao.insertEmployeeProject(projectEmployee);
+	}
+
+	public int deleteEmployeeProject(int employeeProjectId) {
+		return dao.deleteEmployeeProject(employeeProjectId);
+	}
 	
 }

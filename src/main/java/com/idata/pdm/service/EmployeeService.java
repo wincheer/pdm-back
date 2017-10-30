@@ -68,4 +68,8 @@ public class EmployeeService {
 		return dao.insertEmployee(employee);
 	}
 
+	public List<Employee> selectEmployeeList() {
+		return dao.selectEmployeeList();
+	}
+
 }

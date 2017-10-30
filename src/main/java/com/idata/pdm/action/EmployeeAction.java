@@ -43,6 +43,13 @@ public class EmployeeAction {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	public List<Employee> selectEmployeeList() {
+
+		List<Employee> employeeList = employeeService.selectEmployeeList();
+		return employeeList;
+	}
 
 	@RequestMapping(value = "/delUser", method = RequestMethod.GET)
 	public int deleteEmployee(@RequestParam int employeeId) {

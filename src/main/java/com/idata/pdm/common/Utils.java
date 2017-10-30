@@ -10,8 +10,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.idata.pdm.entity.TemplateFolder;
-
 /**
  * <b>版权信息 :</b> 2017，广州智数技术有限公司<br/>
  * <b>功能描述 :</b> 辅助类<br/>
@@ -89,36 +87,29 @@ public class Utils {
 	
 	/************************* 下面的方法用来将模板目录表记录构建为树  ***************************/
 
-	public static List<TreeNode> builderTree(List<TemplateFolder> templateFolderList) {
+	public static List<TreeNode> builderTree(List<TreeNode> folderList) {
 
-		// 转换为TreeNode列表
-		List<TreeNode> sourceTreeNodeList = new ArrayList<TreeNode>();
-		for (TemplateFolder tf : templateFolderList) {
-			TreeNode treeNode = new TreeNode(tf.getTemplateFolderId(), tf.getTemplateFolderName(),
-					tf.getParentTemplateFolderId(), tf.getTemplateId());
-			sourceTreeNodeList.add(treeNode);
-		}
 		// 生成树
 		List<TreeNode> treeNodeList = new ArrayList<TreeNode>();
 		// 生成树 -- 添加根节点
-		for (TreeNode node : sourceTreeNodeList) {
+		for (TreeNode node : folderList) {
 			if (node.getParentId() == 0) {
 				treeNodeList.add(node);
 			}
 		}
 		// 生成树 -- 递归填充子节点
 		for (TreeNode node : treeNodeList) {
-			node.setChildren(getChildList(node.getId(), sourceTreeNodeList));
+			node.setChildren(getChildList(node.getId(), folderList));
 		}
 
 		return treeNodeList;
 	}
 
-	private static List<TreeNode> getChildList(Integer id, List<TreeNode> sourceTreeNodeList) {
+	private static List<TreeNode> getChildList(Integer nodeId, List<TreeNode> sourceTreeNodeList) {
 
 		List<TreeNode> childList = new ArrayList<TreeNode>();
 		for (TreeNode node : sourceTreeNodeList) {
-			if (node.getParentId().equals(id)) {
+			if (node.getParentId().equals(nodeId)) {
 				childList.add(node);
 			}
 		}

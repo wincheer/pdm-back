@@ -43,4 +43,9 @@
 		</set>
 		where folder_id = #{folderId,jdbcType=INTEGER}
 	</update>
+	
+	<select id="selectFolderList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from folder
+		where project_id = #{projectId,jdbcType=INTEGER}
+	</select>
 </mapper>

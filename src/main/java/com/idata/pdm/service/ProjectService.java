@@ -1,5 +1,6 @@
 package com.idata.pdm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,8 +37,15 @@ public class ProjectService {
 		int projectId = project.getProjectId();
 		// 获取模板对应的目录，
 		List<TemplateFolder> templateFolderList = templateFolderDao.selectTemplateFolderList(project.getTemplateId());
+		//转换为TreeNode格式
+		List<TreeNode> folderList = new ArrayList<TreeNode>();
+		for (TemplateFolder tf : templateFolderList) {
+			TreeNode treeNode = new TreeNode(tf.getTemplateFolderId(), tf.getTemplateFolderName(),
+					tf.getParentTemplateFolderId(), tf.getTemplateId());
+			folderList.add(treeNode);
+		}
 		// 变成树状结构 - 父子关系
-		List<TreeNode> folderTree = Utils.builderTree(templateFolderList);
+		List<TreeNode> folderTree = Utils.builderTree(folderList);
 		for(TreeNode node:folderTree){
 			buildChildren(node,projectId);
 		}

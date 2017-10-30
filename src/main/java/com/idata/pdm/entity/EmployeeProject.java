@@ -7,6 +7,8 @@ public class EmployeeProject {
 	private Integer employeeId;
 
 	private Integer projectId;
+	
+	private Integer roleId;
 
 	public Integer getEmployeeProjectId() {
 		return employeeProjectId;
@@ -30,5 +32,13 @@ public class EmployeeProject {
 
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
+	}
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 }
