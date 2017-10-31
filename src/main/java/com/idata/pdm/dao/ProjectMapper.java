@@ -16,4 +16,6 @@ public interface ProjectMapper {
     int updateProject(Project record);
 
 	List<Project> selectProjectPageList(Map<String,Object> project);
+
+	List<Project> selectProjectListByEmployeeId(int employeeId);
 }

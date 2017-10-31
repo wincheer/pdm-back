@@ -20,6 +20,9 @@ public class TemplateAction {
 	@RequestMapping(value = "/templateList", method = RequestMethod.GET)
 	public List<Template> selectTemplateList() {
 		List<Template> templateList = templateService.selectTemplateList();
+		
+		//String ip = InetAddress.getLocalHost().getHostAddress();
+		
 		return templateList;
 	}
 

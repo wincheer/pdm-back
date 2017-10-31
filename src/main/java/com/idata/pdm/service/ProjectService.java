@@ -87,4 +87,8 @@ public class ProjectService {
 		return projectDao.selectProjectPageList(Utils.cleanMap(params));
 	}
 
+	public List<Project> selectProjectListByEmployeeId(int employeeId) {
+		return projectDao.selectProjectListByEmployeeId(employeeId);
+	}
+
 }

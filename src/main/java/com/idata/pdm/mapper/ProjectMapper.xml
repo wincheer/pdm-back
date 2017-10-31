@@ -57,4 +57,10 @@
     </trim>
     limit #{start},#{pageSize}
   </select>
+  
+  <select id="selectProjectListByEmployeeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from project
+	LEFT JOIN employee_project ON project.project_id = employee_project.project_id
+	WHERE employee_project.employee_id = #{employeeId,jdbcType=INTEGER}
+  </select>
 </mapper>

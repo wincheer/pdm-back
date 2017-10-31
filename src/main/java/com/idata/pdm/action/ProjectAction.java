@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idata.pdm.entity.Project;
@@ -32,5 +33,13 @@ public class ProjectAction
 		
 		List<Project> projectrList = projectService.selectProjectPageList(project);
 		return projectrList;
+	}
+	
+	@RequestMapping(value = "/myProjectList", method = RequestMethod.GET)
+	public List<Project> selectProjectListByEmployeeId(@RequestParam int employeeId) {
+
+		List<Project> myProjectList = projectService.selectProjectListByEmployeeId(employeeId);
+		
+		return myProjectList;
 	}
 }
