@@ -14,13 +14,15 @@ import com.idata.pdm.service.DocumentService;
 
 @RestController
 @CrossOrigin
-public class DocumentAction {
+public class DocumentAction
+{
 	@Autowired
 	private DocumentService docService;
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public void upload(@RequestParam MultipartFile file, @RequestParam Map<String, Object> data) throws Exception {
-		System.out.println(file.getOriginalFilename() + " 上传成功！");
+	public void upload(@RequestParam MultipartFile file, @RequestParam Map<String, Object> data) throws Exception
+	{
+		System.out.println(data.get("fileMd5") + "---" + file.getOriginalFilename());
 		// f6e7412e9abec9de3a86476f0feec77b
 
 	}
