@@ -34,6 +34,14 @@ public class FolderAction
 			folderList.add(treeNode);
 		}
 		List<TreeNode> folderTree = Utils.builderTree(folderList);
+		
+		//--begin 以下为测试，不合适就删除
+		//List<TreeNode> _treeNodeList = new ArrayList<TreeNode>();
+		//TreeNode _root = new TreeNode(0, "根目录", null, projectId);
+		//_root.setChildren(folderTree);
+		//_treeNodeList.add(_root);
+		//return _treeNodeList;
+		//--end
 
 		return folderTree;
 	}
