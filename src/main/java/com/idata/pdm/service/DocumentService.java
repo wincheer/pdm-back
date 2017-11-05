@@ -116,5 +116,14 @@ public class DocumentService {
 		List<Document> docList = docDao.selectDocumentList(queryParam);
 		return docList;
 	}
+	
+	public List<Map<String, Object>> selectDocumentMapList(Map<String, Object> queryParam)
+	{
+		//TODO 处理一下当前用户
+		queryParam.put("start", 0);
+		queryParam.put("pageSize", Integer.MAX_VALUE);
+		List<Map<String, Object>> docList = docDao.selectDocumentMapList(queryParam);
+		return docList;
+	}
 
 }

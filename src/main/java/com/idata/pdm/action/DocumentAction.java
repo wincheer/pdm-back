@@ -63,9 +63,9 @@ public class DocumentAction {
 	}
 	
 	@RequestMapping(value = "/docSearchList", method = RequestMethod.POST)
-	public List<Document> selectDocumentList1(@RequestBody Map<String, Object> queryParam) throws Exception {
+	public List<Map<String, Object>> selectDocumentMapList(@RequestBody Map<String, Object> queryParam) throws Exception {
 
-		return docService.selectDocumentList(queryParam);
+		return docService.selectDocumentMapList(queryParam);
 	}
 
 }

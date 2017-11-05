@@ -53,4 +53,23 @@
     </trim>
     limit #{start},#{pageSize}
   </select>
+  
+  <select id="selectDocumentMapList" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		document.document_id as documentId,
+		document.project_id as projectId,
+		document.folder_id as folderId,
+		document.document_name as documentName,
+		folder.folder_name as folderName 
+	FROM
+		document
+	INNER JOIN folder ON document.folder_id = folder.folder_id
+    where 1 = 1
+  	<trim prefix=" and (" suffix=")" suffixOverrides="and">
+      <if test="folderId != null">folder_id = #{folderId,jdbcType=INTEGER} and</if>
+      <if test="documentName != null">document_name LIKE CONCAT('%',#{documentName,jdbcType=VARCHAR},'%') and</if>
+      <if test="projectId != null">document.project_id = #{projectId,jdbcType=INTEGER} and</if>
+    </trim>
+    limit #{start},#{pageSize}
+  </select>
 </mapper>
