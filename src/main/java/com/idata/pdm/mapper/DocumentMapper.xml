@@ -48,7 +48,7 @@
     where 1 = 1
   	<trim prefix=" and (" suffix=")" suffixOverrides="and">
       <if test="folderId != null">folder_id = #{folderId,jdbcType=INTEGER} and</if>
-      <if test="documentName != null">document_name = #{documentName,jdbcType=VARCHAR} and</if>
+      <if test="documentName != null">document_name LIKE CONCAT('%',#{documentName,jdbcType=VARCHAR},'%') and</if>
       <if test="projectId != null">project_id = #{projectId,jdbcType=INTEGER} and</if>
     </trim>
     limit #{start},#{pageSize}

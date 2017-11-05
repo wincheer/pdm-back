@@ -9,8 +9,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.idata.pdm.dao.DocumentMapper;
 import com.idata.pdm.dao.DocumentVersionMapper;
@@ -24,6 +26,8 @@ import com.idata.pdm.entity.File;
 public class DocumentService {
 	private final static Logger logger = LoggerFactory.getLogger(DocumentService.class);
 
+	@Value("${upload_path}")
+	private String UPLOAD_PATH;
 	@Autowired
 	private DocumentMapper docDao;
 	@Autowired
@@ -32,12 +36,16 @@ public class DocumentService {
 	private DocumentVersionMapper verDao;
 
 	/**
-	 * 用户上传文档： 1、查找md5对应的file,若没找到新建并返回fileId；若找到返回fileId
-	 * 2、查找当前项目下（要不要检查当前目录下？）同名文档，若有新建版本号，若无新建document，然后新建版本号: 3、新建doc_version
+	 * 用户上传文档： 
+	 * 1、查找md5对应的file,若没找到新建并返回fileId同时上传文件；若找到返回fileId并且不上传文件
+	 * 2、查找当前项目下（要不要检查当前目录下？）同名文档，若有新建版本号，若无新建document，然后新建版本号: 
+	 * 3、新建doc_version
 	 * 
 	 * @param data，包含docName、docMd5、projectId、folderId、employeeId
+	 * @throws  
+	 * @throws Exception 
 	 */
-	public void upload(Map<String, Object> data) {
+	public void upload(MultipartFile uploadFile,Map<String, Object> data) throws Exception {
 
 		logger.info("上传参数: " + data.toString());
 		String docName = data.get("docName").toString();
@@ -47,11 +55,15 @@ public class DocumentService {
 		Integer employeeId = Integer.parseInt(data.get("employeeId").toString());
 
 		long timeMillis = System.currentTimeMillis();
-
+		
 		File file = fileDao.selectFileByMd5(docMd5);
 		if (file == null) {
+			//上传文件
+			java.io.File outputFile = new java.io.File(UPLOAD_PATH, String.valueOf(timeMillis));
+			uploadFile.transferTo(outputFile);
+			//更新记录
 			file = new File();
-			file.setFileName(timeMillis + "." + docName.split("\\.")[1]);
+			file.setFileName(String.valueOf(timeMillis));
 			file.setFileMd5(data.get("docMd5").toString());
 			fileDao.insertFile(file);
 		}
@@ -92,6 +104,15 @@ public class DocumentService {
 		queryParam.put("start", 0);
 		queryParam.put("pageSize", Integer.MAX_VALUE);
 
+		List<Document> docList = docDao.selectDocumentList(queryParam);
+		return docList;
+	}
+
+	public List<Document> selectDocumentList(Map<String, Object> queryParam)
+	{
+		//TODO 处理一下当前用户
+		queryParam.put("start", 0);
+		queryParam.put("pageSize", Integer.MAX_VALUE);
 		List<Document> docList = docDao.selectDocumentList(queryParam);
 		return docList;
 	}

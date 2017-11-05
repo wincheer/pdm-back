@@ -1,6 +1,5 @@
 package com.idata.pdm.action;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -32,10 +31,8 @@ public class DocumentAction {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public void upload(@RequestParam MultipartFile file, @RequestParam Map<String, Object> data) {
 
-		File outputFile = new File(UPLOAD_PATH, file.getOriginalFilename());
 		try {
-			file.transferTo(outputFile);
-			docService.upload(data);
+			docService.upload(file,data);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -58,18 +55,17 @@ public class DocumentAction {
 		// System.out.println(file.getOriginalFilename());
 		System.out.println(data.toString());
 	}
-
-	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public void download(@RequestParam int fileId) throws Exception {
-
-		// System.out.println(file.getOriginalFilename());
-		System.out.println("File ID = " + fileId);
-	}
 	
 	@RequestMapping(value = "/docList", method = RequestMethod.GET)
 	public List<Document> selectDocumentList(@RequestParam int folderId) throws Exception {
 
 		return docService.selectFolderDocumentList(folderId);
+	}
+	
+	@RequestMapping(value = "/docSearchList", method = RequestMethod.POST)
+	public List<Document> selectDocumentList1(@RequestBody Map<String, Object> queryParam) throws Exception {
+
+		return docService.selectDocumentList(queryParam);
 	}
 
 }

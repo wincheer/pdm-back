@@ -50,5 +50,27 @@
     </set>
     where document_version_id = #{documentVersionId,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectDocumentVersionList" parameterType="java.util.Map" resultType="java.util.Map">
+  	SELECT
+		dv.document_version_id,
+		dv.document_id,
+		dv.file_id,
+		dv.upload_date,
+		employee.display_name AS upload_employee,
+		dv.version
+	FROM
+		document_version AS dv
+	LEFT JOIN employee ON dv.upload_employee = employee.employee_id
+    where 1=1
+    <trim prefix=" and (" suffix=")" suffixOverrides="and">
+      <if test="documentId != null">document_id = #{documentId,jdbcType=INTEGER} and</if>
+      <if test="fileId != null">file_id = #{fileId,jdbcType=INTEGER} and</if>
+      <if test="uploadDate != null">upload_date = #{uploadDate,jdbcType=TIMESTAMP} and</if>
+      <if test="uploadEmployee != null">upload_employee = #{uploadEmployee,jdbcType=INTEGER} and</if>
+      <if test="version != null">version = #{version,jdbcType=VARCHAR} and</if>
+    </trim>
+    limit #{start},#{pageSize}
+  </select>
 
 </mapper>
