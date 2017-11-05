@@ -62,5 +62,6 @@
   	select * from project
 	LEFT JOIN employee_project ON project.project_id = employee_project.project_id
 	WHERE employee_project.employee_id = #{employeeId,jdbcType=INTEGER}
+	ORDER BY project.project_id DESC
   </select>
 </mapper>
