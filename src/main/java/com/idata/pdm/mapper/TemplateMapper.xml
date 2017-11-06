@@ -18,7 +18,7 @@
 		where template_id = #{templateId,jdbcType=INTEGER}
 	</delete>
 
-	<insert id="insertTemplate" parameterType="com.idata.pdm.entity.Template">
+	<insert id="insertTemplate" useGeneratedKeys="true" keyProperty="templateId" parameterType="com.idata.pdm.entity.Template">
 		insert into template
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="templateName != null">template_name,</if>

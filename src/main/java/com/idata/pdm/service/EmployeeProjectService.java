@@ -21,6 +21,10 @@ public class EmployeeProjectService
 	public List<EmployeeProject> selectProjectEmployeeList(int projectId) {
 		return dao.selectProjectEmployeeList(projectId);
 	}
+	
+	public List<EmployeeProject> selectEmployeeProjectList(int employeeId) {
+		return dao.selectEmployeeProjectList(employeeId);
+	}
 
 	public int updateEmployeeProject(EmployeeProject projectEmployee) {
 		return dao.updateEmployeeProject(projectEmployee);

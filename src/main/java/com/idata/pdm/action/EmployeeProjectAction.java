@@ -28,6 +28,14 @@ public class EmployeeProjectAction
 		return projectEmployeeList;
 	}
 	
+	@RequestMapping(value = "/employeeProjectList", method = RequestMethod.GET)
+	public List<EmployeeProject> selectEmployeeProjectList(@RequestParam int employeeId) throws Exception {
+
+		List<EmployeeProject> employeeProjectList = employeeProjectService.selectEmployeeProjectList(employeeId);
+		
+		return employeeProjectList;
+	}
+	
 	@RequestMapping(value = "/editEmployeeProject", method = RequestMethod.POST)
 	public int editEmployee(@RequestBody EmployeeProject projectEmployee) {
 

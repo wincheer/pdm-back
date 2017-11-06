@@ -15,5 +15,6 @@ public interface EmployeeProjectMapper {
     int updateEmployeeProject(EmployeeProject record);
 
 	List<EmployeeProject> selectProjectEmployeeList(int projectId);
+	List<EmployeeProject> selectEmployeeProjectList(int employeeId);
 
 }
