@@ -70,7 +70,7 @@ public class DocumentService {
 
 		Map<String, Object> queryParam = new LinkedHashMap<String, Object>();
 		queryParam.put("projectId", projectId);
-		//queryParam.put("folderId", folderId);
+		queryParam.put("folderId", folderId);
 		queryParam.put("documentName", docName);
 		queryParam.put("start", 0);
 		queryParam.put("pageSize", 1);
