@@ -54,6 +54,17 @@
     limit #{start},#{pageSize}
   </select>
   
+  <select id="selectDocumentListStrict" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select * from document
+    where 1 = 1
+  	<trim prefix=" and (" suffix=")" suffixOverrides="and">
+      <if test="folderId != null">folder_id = #{folderId,jdbcType=INTEGER} and</if>
+      <if test="documentName != null">document_name = #{documentName,jdbcType=VARCHAR} and</if>
+      <if test="projectId != null">project_id = #{projectId,jdbcType=INTEGER} and</if>
+    </trim>
+    limit #{start},#{pageSize}
+  </select>
+  
   <select id="selectDocumentMapList" parameterType="java.util.Map" resultType="java.util.Map">
   	SELECT
 		document.document_id as documentId,
@@ -72,4 +83,6 @@
     </trim>
     limit #{start},#{pageSize}
   </select>
+  
+  
 </mapper>

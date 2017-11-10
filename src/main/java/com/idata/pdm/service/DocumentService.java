@@ -75,7 +75,7 @@ public class DocumentService {
 		queryParam.put("start", 0);
 		queryParam.put("pageSize", 1);
 
-		List<Document> docList = docDao.selectDocumentList(queryParam);
+		List<Document> docList = docDao.selectDocumentListStrict(queryParam);
 		Document doc;
 		if (docList.size() != 0) {
 			doc = docList.get(0);
