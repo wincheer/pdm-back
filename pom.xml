@@ -4,12 +4,12 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ywq.demo</groupId>
-	<artifactId>puresb</artifactId>
+	<artifactId>pdm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>war</packaging>
 
-	<name>PureBoot</name>
+	<name>PDM</name>
 	<description>Project Document Manager</description>
 
 	<properties>

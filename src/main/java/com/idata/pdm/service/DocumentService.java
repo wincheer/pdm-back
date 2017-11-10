@@ -126,4 +126,9 @@ public class DocumentService {
 		return docList;
 	}
 
+	public Document selectDocument(int docId)
+	{
+		return docDao.selectDocument(docId);
+	}
+
 }
