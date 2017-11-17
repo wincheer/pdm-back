@@ -23,7 +23,8 @@ public class EmployeeService {
 
 	public Employee login(Employee employee) {
 		Employee emp = dao.login(employee);
-		logger.info(emp.getDisplayName());
+		if(emp!=null)
+			logger.info(emp.getDisplayName());
 
 		return emp;
 	}
